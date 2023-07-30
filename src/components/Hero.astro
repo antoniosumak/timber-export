@@ -1,0 +1,30 @@
+---
+import HeroText from './HeroText.astro';
+import { Image } from '@astrojs/image/components';
+const { height } = Astro.props;
+---
+
+<section class={`hero-image ${height}`}>
+  <div class='w-full h-full overlay'>
+    <div class='max-w-7xl mx-auto w-full h-full px-8 md:px-16'>
+      <HeroText />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-image {
+    background-image: url('../images/background1.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .overlay {
+    background: rgb(40, 40, 40);
+    background: linear-gradient(
+      90deg,
+      rgba(40, 40, 40, 0.7945772058823529) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+</style>

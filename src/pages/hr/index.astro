@@ -1,0 +1,101 @@
+---
+import { changeLanguage } from "i18next";
+import { Image } from "@astrojs/image/components";
+import Counter from "../../components/Counter.astro";
+import Hero from "../../components/Hero.astro";
+import IntroText from "../../components/IntroText.astro";
+import Section from "../../components/Section.astro";
+import VideoPlayer from "../../components/VideoPlayer.astro";
+import Layout from "../../layouts/Layout.astro";
+import testImage from "../../images/background1.jpg";
+import Swiper from "../../components/Swiper.astro";
+import fscCertificate from "../../images/fsc_certifikat.png";
+import hamag from "../../images/hamag.jpg";
+import eu from "../../images/eu-1.jpg";
+import esif from "../../images/esif2.jpg";
+import ProductsShowcase from "../../components/ProductsShowcase.astro";
+import type { Product } from "../../components/ProductsShowcase.astro";
+
+changeLanguage("hr");
+
+const products: Product[] = [
+    {
+        id: "drva-za-ogrijev",
+        name: "Drva za ogrijev",
+    },
+    { id: "peleti", name: "Peleti" },
+    {
+        id: "prijevoz",
+        name: "Prijevoz",
+    },
+];
+---
+
+<Layout title='Welcome to Astro.'>
+  <main class='pt-24'>
+    <Hero height='h-[600px]' />
+    <IntroText />
+    <Counter />
+    <!-- <div
+      class='grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto px-8 md:px-16'
+    >
+      <VideoPlayer />
+      <VideoPlayer />
+    </div> -->
+    <Section>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-16'>
+        <div class='space-y-6'>
+          <h2 class='text-2xl md:text-4xl font-bold'>O nama</h2>
+          <p class='text-sm text-justify leading-6'>
+            <strong>TIMBER-EXPORT</strong> je vodeći izvoznik ogrjevnog drveta iz
+            Hrvatske na njemačko tržište. Osnovana u Kutini 2011. godine od strane
+            vlasnika <strong
+              class='underline underline-offset-2 decoration-2 underline-primary'
+              >Mirjane i Ivana Blazinić</strong
+            >, tvrtka je specijalizirana za <strong
+              >distribuciju drva za ogrjev i peleta</strong
+            >. S obiteljskom poviješću u drvnoj industriji, par koristi svoje
+            iskustvo za pružanje kvalitetnih proizvoda i isporuke. Tvrtka je
+            započela sa izvozom u <strong>Italiju</strong>, a od tada se
+            proširila na tržišta
+            <strong> Austrije, Švicarske i Njemačke</strong>.
+          </p>
+        </div>
+        <Swiper imageUrls={[testImage, testImage, testImage]} />
+      </div>
+    </Section>
+    <Section>
+      <div class='grid grid-cols-1 md:grid-cols-2 gap-16'>
+        <!-- <Swiper imageUrls={[testImage, testImage, testImage]} /> -->
+        <div class='grid grid-cols-2 place-items-center gap-0'>
+          <Image src={fscCertificate} height='200' alt='Fsc certificate' />
+          <div>
+            <Image src={hamag} height='150' alt='Fsc certificate' />
+            <Image src={eu} height='150' alt='Fsc certificate' />
+            <Image src={esif} height='150' alt='Fsc certificate' />
+          </div>
+        </div>
+        <div class='space-y-6 order-first md:order-last relative'>
+          <h2 class='text-2xl md:text-4xl font-bold'>Certifikati</h2>
+          <p class='text-sm text-justify leading-6'>
+            TIMBER-EXPORT godišnje isporuči 4.000 m3 ogrjevnog drveta i 1.000
+            tona Ruf Briketa. Također se pripremaju za izvoz visokokaloričnih
+            drvenih peleta u Italiju i Njemačku. Njihovo drvo dolazi iz
+            Hrvatskih šuma s FSC certifikatom. TIMBER-EXPORT ima vlastitu flotu
+            za dostavu i surađuje s drugim prijevozničkim tvrtkama za učinkovito
+            ispunjavanje narudžbi.
+          </p>
+          <p class='text-xs font-medium text-dark'>
+            Projekt je sufinancirala Europska unija iz Europskog fonda za
+            regionalni razvoj
+          </p>
+        </div>
+      </div>
+    </Section>
+    <Section title='Proizvodi i usluge'>
+      <ProductsShowcase products={products} />
+    </Section>
+  </main>
+</Layout>
+
+<style></style>

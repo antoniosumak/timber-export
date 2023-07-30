@@ -1,0 +1,131 @@
+---
+import { Image } from '@astrojs/image/components';
+import Icon from 'astro-icon';
+import logo from '../images/logo.png';
+const date = new Date();
+const year = date.getFullYear();
+
+const info = [
+  {
+    key: 'Adresa',
+    value: 'Gajeva 26, 44320 Kutina, Hrvatska',
+    icon: 'mdi:map-marker',
+  },
+  {
+    key: 'Email',
+    value: 'ivan.ivanblazinic@gmail.com',
+    icon: 'mdi:email',
+  },
+  {
+    key: 'Telefon',
+    value: '+385 98-557-345',
+    icon: 'mdi:phone',
+  },
+  {
+    key: 'PDV',
+    value: 'HR56196839047',
+    icon: 'mdi:file-document',
+  },
+  {
+    key: 'Radno vrijeme',
+    value: 'Pon - Pet 08:00-17:00',
+    icon: 'mdi:clock',
+  },
+];
+
+const links = [
+  {
+    key: 'O nama',
+    path: '/o-nama',
+  },
+  {
+    key: 'Proizvodi',
+    path: '/proizvodi',
+  },
+  {
+    key: 'Galerija',
+    path: '/galerija',
+  },
+  {
+    key: 'Kontakt',
+    path: '/kontakt',
+  },
+];
+
+const socials = [
+  {
+    name: 'Timber export',
+    icon: 'mdi:facebook',
+    path: 'https://www.facebook.com/timberexportcro',
+  },
+];
+---
+
+<footer class='bg-darker relative'>
+  <div
+    class='max-w-7xl mx-auto px-8 md:px-16 py-8 md:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-20'
+  >
+    <div class='space-y-2'>
+      <Image src={logo} aspectRatio='16:9' class='w-24' alt='Logo' />
+      <p class='text-xs text-text-dark max-w-[50ch] leading-4'>
+        Naša nepokolebljiva predanost rješenjima grijanja osigurava da vaš dom
+        ostane ugodan. Naručite sada i prepustite se prirodnoj toplini
+        raspaljene vatre.
+      </p>
+    </div>
+    <div>
+      <h3 class='text-text-dark text-sm font-bold mb-4'>Kontakt</h3>
+      <ul class='space-y-2'>
+        {
+          info.map((item) => (
+            <li class='flex items-center space-x-2'>
+              <Icon name={item.icon} class='w-6 text-text-darker' />
+              <p class='text-xs text-text-dark'>{item.value}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div>
+      <h3 class='text-text-dark text-sm font-bold mb-4'>Linkovi</h3>
+      <ul class='space-y-2'>
+        {
+          links.map((link) => (
+            <li class='flex items-center space-x-2'>
+              <a
+                href={link.path}
+                class='text-xs text-text-dark hover:underline'
+              >
+                {link.key}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div>
+      <h3 class='text-text-dark text-sm font-bold mb-4'>Društvene mreže</h3>
+      <ul class='space-y-2'>
+        {
+          socials.map((social) => (
+            <li class='flex items-center space-x-2'>
+              <a
+                href={social.path}
+                target='_blank'
+                class='text-xs text-text-dark hover:underline flex items-center space-x-2'
+              >
+                <Icon name={social.icon} class='w-6 text-text-darker' />
+                <p>{social.name}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class='w-full h-10 bg-dark flex items-center justify-center'>
+    <p class='text-text-dark text-sm'>
+      @{year} Timber Export. All rights reserved.
+    </p>
+  </div>
+</footer>

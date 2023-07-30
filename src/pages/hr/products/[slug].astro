@@ -1,0 +1,20 @@
+---
+import { changeLanguage } from "i18next";
+import Counter from "../../../components/Counter.vue";
+import Layout from "../../../layouts/Layout.astro";
+
+changeLanguage("hr");
+
+export async function getStaticPaths() {
+    return [
+        { params: { slug: "pellets" } },
+        { params: { slug: "firewood" } },
+        { params: { slug: "briquettes" } }
+    ];
+}
+const { slug } = Astro.params;
+---
+<Layout title="Test">
+<h1>{slug}</h1>
+<Counter client:load/>
+</Layout>

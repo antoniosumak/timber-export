@@ -1,0 +1,62 @@
+---
+const { text, buttonType } = Astro.props;
+---
+
+<button
+  class={`flex items-center px-4 py-2 lg:px-6 lg:py-3 border ${buttonType}`}
+  >{text}<span class='arrow'></span></button
+>
+
+<style>
+  .primary {
+    @apply bg-primary hover:bg-white hover:text-primary transition-all duration-300;
+  }
+
+  .secondary {
+  }
+
+  .outline {
+  }
+
+  button > .arrow {
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    position: relative;
+    transform: rotate(-45deg);
+    margin: 0 6px;
+    transition: all 0.3s ease;
+  }
+
+  button > .arrow::before {
+    display: block;
+    background-color: rgb(100 72 54);
+    width: 3px;
+    transform-origin: bottom right;
+    height: 2px;
+    position: absolute;
+    opacity: 0;
+    bottom: calc(-2px / 2);
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    content: '';
+    right: 0;
+  }
+
+  button:hover > .arrow {
+    transform: rotate(-45deg) translate(4px, 4px);
+    border-color: text-hover-color;
+    border-right: 2px solid rgb(100 72 54);
+    border-bottom: 2px solid rgb(100 72 54);
+  }
+
+  button:hover > .arrow::before {
+    opacity: 1;
+    width: 8px;
+  }
+
+  button:hover {
+    @apply bg-primary;
+  }
+</style>

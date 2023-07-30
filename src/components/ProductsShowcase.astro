@@ -1,0 +1,47 @@
+---
+import { Image } from '@astrojs/image/components';
+import PelletImage from '../images/pellets_showcase.png';
+import FirewoodImage from '../images/firewood_showcase.png';
+import TransportImage from '../images/truck_showcase.png';
+
+const images: Record<string, any> = {
+  'drva-za-ogrijev': FirewoodImage,
+  peleti: PelletImage,
+  prijevoz: TransportImage,
+};
+
+export interface Props {
+  products: Product[];
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  description?: string;
+}
+
+const { products } = Astro.props;
+---
+
+<div class='grid grid-cols-3 gap-10'>
+  {
+    products.map((product) => (
+      <div class='group nice-shadow flex flex-col items-center justify-center transition-all ease-in-out duration-300 border hover:border-dark p-4 cursor-pointer'>
+        <Image
+          src={images[product.id]}
+          alt={product.name}
+          class='w-6/12 transition-all ease-in-out duration-300 group-hover:scale-110'
+          aspectRatio='1:1'
+          height='500'
+        />
+        <h3 class='text-xl font-bold'>{product.name}</h3>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .nice-shadow {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+</style>

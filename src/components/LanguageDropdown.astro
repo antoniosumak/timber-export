@@ -1,0 +1,26 @@
+---
+export const languages = [
+  {
+    id: 'en',
+    name: 'English',
+  },
+  {
+    id: 'it',
+    name: 'Italian',
+  },
+  {
+    id: 'de',
+    name: 'German',
+  },
+  {
+    id: 'hr',
+    name: 'Croatian',
+  },
+];
+---
+
+<div
+  class='group-hover:flex hidden flex-col space-y-2 absolute top-8 left-0 bg-darker p-4 border border-text-dark shadow-xl rounded'
+>
+  {languages.map((language) => <p>{language.name}</p>)}
+</div>

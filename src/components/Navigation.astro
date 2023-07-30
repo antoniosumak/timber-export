@@ -1,0 +1,136 @@
+---
+import { Image } from '@astrojs/image/components';
+import logo from '../images/logo.png';
+import { Icon } from 'astro-icon';
+import { LanguageSelector } from 'astro-i18next/components';
+import i18next, { t } from 'i18next';
+
+const lang = i18next.language;
+const base = lang === 'en' ? '' : `/${lang}`;
+
+console.log(lang);
+const products: Product[] = [
+  {
+    id: 'firewood',
+    name: 'Firewood',
+  },
+  {
+    id: 'briquettes',
+    name: 'Briquettes',
+  },
+  {
+    id: 'pellets',
+    name: 'Pellets',
+  },
+];
+
+export const routes: Route[] = [
+  {
+    id: 'home',
+    name: 'Header.Home',
+    path: '',
+  },
+  {
+    id: 'about-us',
+    name: 'Header.AboutUs',
+    path: 'about',
+  },
+  {
+    id: 'products',
+    name: 'Header.Products',
+    path: 'products',
+    children: [
+      {
+        id: 'firewood',
+        name: 'Header.Firewood',
+        path: 'firewood',
+      },
+      {
+        id: 'briquettes',
+        name: 'Header.Briquettes',
+        path: 'briquettes',
+      },
+      {
+        id: 'pellets',
+        name: 'Header.Pellets',
+        path: 'pellets',
+      },
+    ],
+  },
+  {
+    id: 'gallery',
+    name: 'Header.Gallery',
+    path: 'gallery',
+  },
+  {
+    id: 'contact',
+    name: 'Header.Contact',
+    path: 'contact',
+  },
+];
+
+export interface Product {
+  id: string;
+  name: string;
+}
+
+export interface Route {
+  id: string;
+  name: string;
+  path: string;
+  children?: Route[];
+}
+---
+
+<header
+  class='fixed top-0 right-0 left-0 z-10 bg-[rgba(255,255,255,0.8)] backdrop-blur-sm'
+>
+  <nav
+    class='px-8 md:px-16 max-w-7xl mx-auto flex items-center justify-between'
+  >
+    <div>
+      <Image
+        loading='lazy'
+        class='w-24'
+        src={logo}
+        alt='timber export logo'
+        format='webp'
+      />
+    </div>
+    <div class='lg:hidden'>
+      <h2 class='text-2xl font-bold company-name'>TIMBER EXPORT</h2>
+    </div>
+    <div class='space-x-6 hidden lg:flex'>
+      {
+        routes.map((route) => (
+          <div class='relative group'>
+            <a href={`${base}/${route.path}`}>
+              {t(route.name)}
+              {route.children?.length && (
+                <div class='flex flex-col absolute ease-in-out transition-all duration-300 top-6 transform scale-0 group-hover:scale-100 bg-white p-4 pt-0 gap-4 shadow-md opacity-0 group-hover:opacity-100 origin-top'>
+                  {route?.children.map((childRoute) => (
+                    <a href={`${base}/${childRoute.path}`}>
+                      {t(childRoute.name)}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </a>
+          </div>
+        ))
+      }
+      <LanguageSelector showFlag />
+    </div>
+    <Icon
+      id='hamburger-icon'
+      class='w-8 block lg:hidden cursor-pointer'
+      name='simple-line-icons:menu'
+    />
+  </nav>
+</header>
+
+<style>
+  .company-name {
+    font-family: 'oswald';
+  }
+</style>

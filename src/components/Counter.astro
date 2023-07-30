@@ -1,0 +1,60 @@
+---
+import { Icon } from 'astro-icon';
+const counterElements = [
+  {
+    id: 'products',
+    label: 'Tona proizvoda',
+    icon: 'lucide:truck',
+  },
+  {
+    id: 'countries',
+    label: 'Zemlja izvoza',
+    icon: 'lucide:globe-2',
+  },
+  {
+    id: 'clients',
+    label: 'Zadovoljnih klijenata',
+    icon: 'lucide:users',
+  },
+  {
+    id: 'years',
+    label: 'Godina iskustva',
+    icon: 'lucide:clock',
+  },
+];
+---
+
+<div class='flex space-x-4 max-w-7xl mx-auto w-full h-full px-8 md:px-16 py-8'>
+  <div class='grid grid-cols-2 md:grid-cols-4 w-full gap-2'>
+    {
+      counterElements.map((counter) => (
+        <div class='py-4 flex flex-col  items-center space-y-2 bg-secondary relative overflow-hidden'>
+          <Icon
+            name={counter.icon}
+            class='w-20 -top-3 -right-3 absolute text-gray-700 z-1'
+          />
+          <p
+            class='font-bold text-xl md:text-2xl text-gray-300 relative z-2'
+            id={counter.id}
+          />
+          <p class='text-center text-3xs md:text-xs text-gray-400 relative z-2'>
+            {counter.label}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import { CountUp } from 'countup.js';
+
+  const productsCounter = new CountUp('products', 20000);
+  const countriesCounter = new CountUp('countries', 5);
+  const clientsCounter = new CountUp('clients', 500);
+  const yearsCounter = new CountUp('years', 7);
+  productsCounter.start();
+  countriesCounter.start();
+  clientsCounter.start();
+  yearsCounter.start();
+</script>
