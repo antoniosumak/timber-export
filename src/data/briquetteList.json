@@ -1,0 +1,14 @@
+[
+    {
+        "id": "ruf",
+        "title": "RUF briquette",
+        "description": "90x150x60",
+        "size" : "10kg"
+    },
+    {
+        "id": "round",
+        "title": "ROUND briquette",
+        "description": "90x150x60",
+        "size" : "10kg"
+    }
+]

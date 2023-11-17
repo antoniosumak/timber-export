@@ -1,0 +1,113 @@
+---
+import { changeLanguage } from 'i18next';
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import WoodPalete from '../../images/firewood_showcase.png';
+import { Image } from '@astrojs/image/components';
+import Badge from '../../components/Badge.astro';
+import Title from '../../components/Title.astro';
+import Subtitle from '../../components/Subtitle.astro';
+import Swiper from '../../components/Swiper.astro';
+import Button from '../../components/Button.astro';
+import ContactModal from '../../components/ContactModal.astro';
+import Toast from '../../components/Toast.astro';
+
+changeLanguage('en');
+
+const units: Record<string, string> = {
+  width: 'm',
+  height: 'm',
+  length: 'm',
+  excess: 'cm',
+  truck: 'T',
+  summer: 'pallets',
+  winter: 'pallets',
+};
+function capitalizeFirstLetter(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+function getCorrectUnit(key: string) {
+  return units[key];
+}
+const [firewoodData] = await getCollection('firewood');
+---
+
+<Layout title='Firewood'>
+  <Section title={firewoodData.data.title}>
+    <div class='flex gap-8 mb-4'>
+      <div class='w-5/12'>
+        <Swiper imageUrls={[WoodPalete, WoodPalete]} />
+      </div>
+      <div class='space-y-2'>
+        <div>
+          <Subtitle text='Wet woods' color='text-black' />
+          <p>{firewoodData.data.wetWoods.join(', ')}</p>
+        </div>
+        <div>
+          <Subtitle text='Dry woods' color='text-black' />
+          <p>{firewoodData.data.dryWoods.join(', ')}</p>
+        </div>
+
+        <div>
+          <Subtitle text='Log length' color='text-black' />
+          <div class='flex items-center gap-1'>
+            {
+              firewoodData.data.logLength.map((length) => (
+                <Badge text={length} />
+              ))
+            }
+          </div>
+        </div>
+        <div>
+          <Subtitle text='Log thickness' color='text-black' />
+          <div class='flex items-center gap-1'>
+            {
+              firewoodData.data.logThickness.map((thickness) => (
+                <Badge text={thickness} />
+              ))
+            }
+          </div>
+        </div>
+        <div>
+          <Subtitle text='Dimensions' color='text-black' />
+          {
+            Object.entries(firewoodData.data.dimensions).map(([key, value]) => (
+              <p>
+                {capitalizeFirstLetter(key)}: {value} {getCorrectUnit(key)}
+              </p>
+            ))
+          }
+        </div>
+        <div>
+          <Subtitle text='Transit' color='text-black' />
+          {
+            Object.entries(firewoodData.data.packaging).map(([key, value]) => (
+              <p>
+                {capitalizeFirstLetter(key)}: {value.join(' - ')}{' '}
+                {getCorrectUnit(key)}
+              </p>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <Button
+      id='contact-button'
+      buttonType='primary'
+      text='Order'
+      icon='fe:mail'
+    />
+  </Section>
+  <ContactModal id='contact-modal' selected='firewood' />
+</Layout>
+
+<script>
+  const contactButton = document.getElementById('contact-button');
+  const modal = document.getElementById('contact-modal');
+
+  contactButton?.addEventListener('click', () => {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  });
+</script>

@@ -1,5 +1,10 @@
 ---
 import Button from './Button.astro';
+
+import i18next, { t } from 'i18next';
+
+const lang = i18next.language;
+const base = lang === 'en' ? '' : `/${lang}`;
 ---
 
 <div
@@ -8,18 +13,18 @@ import Button from './Button.astro';
   <!-- <h1 class='title text-5xl'>Timber export</h1> -->
   <div class='md:space-y-2 w-full lg:max-w-[60%]'>
     <h1 class='title text-2xl md:text-4xl lg:text-5xl uppercase'>
-      Drva za ogrijev i pelet
+      {t('Hero.FirstTitle')}
     </h1>
     <h2 class='title text-2xl md:text-4xl lg:text-5xl uppercase'>
-      za Vašu toplu i ugodnu zimu!
+      {t('Hero.SecondTitle')}
     </h2>
     <p class='pt-4 text-xs md:text-sm !leading-7 max-w-[50ch] md:max-w-[75ch]'>
-      Naši su proizvodi pažljivo nabavljeni kako bi se osiguralo dosljedno
-      grijanje i dugotrajno izgaranje. Naručite sada i iskusite vrhunsku
-      udobnost grijanja, bez obzira na godišnje doba
+      {t('Hero.ShortSubheader')}
     </p>
   </div>
-  <Button text='Proizvodi' buttonType='primary' />
+  <a href={`${base}/#products`}>
+  <Button text={t('Hero.ButtonText')} buttonType='primary' />
+</a>
 </div>
 
 <style>

@@ -1,15 +1,27 @@
 ---
-const { text, buttonType } = Astro.props;
+import { Icon } from 'astro-icon';
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'button'> {
+  text: string;
+  buttonType?: 'primary' | 'secondary' | 'outline';
+  icon?: string;
+}
+
+const { text, buttonType, icon, id } = Astro.props;
 ---
 
 <button
-  class={`flex items-center px-4 py-2 lg:px-6 lg:py-3 border ${buttonType}`}
-  >{text}<span class='arrow'></span></button
+  id={id}
+  class={`flex gap-3 items-center px-4 py-2 lg:px-6 lg:py-3 border ${buttonType}`}
 >
+  <p>{text}</p>
+  {icon ? <Icon name={icon} class='w-6' width='10' /> : <span class='arrow' />}
+</button>
 
 <style>
   .primary {
-    @apply bg-primary hover:bg-white hover:text-primary transition-all duration-300;
+    @apply text-white bg-primary hover:bg-white hover:text-primary transition-all duration-300;
   }
 
   .secondary {

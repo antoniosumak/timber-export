@@ -8,5 +8,52 @@
     "Pellets": "Pellets",
     "Gallery": "Gallery",
     "Contact": "Contact"
+  },
+  "Hero": {
+    "FirstTitle": "Firewood and pellets",
+    "SecondTitle": "for your warm and pleasant winter!",
+    "ShortSubheader": "Our products are carefully sourced to ensure consistent heating and long-lasting combustion. Order now and experience the ultimate heating comfort, regardless of the season",
+    "ButtonText": "Products"
+  },
+  "ShortIntro": {
+    "FirstTitle": "With you since",
+    "Year": "!",
+    "FirstDescription": "Our products and services have satisfied over 300",
+    "SecondDescription": "customers contact us, we promise top quality and fast delivery!",
+    "Products": "Tons of product",
+    "Countries": "Countries of export",
+    "Clients": "Satisfied clients",
+    "Years": "Years of experience"
+  },
+  "About": {
+    "Title": "About us",
+    "About1": "is the leading exporter of firewood from Croatia to the German market. Founded in Kutina in 2016 by the owner",
+    "About2": "the company specializes in the distribution of firewood and pellets. With a family history in the timber industry, the couple use their experience to provide quality products and delivery. The company started with exports to Italy, and since then it has expanded to other markets of",
+    "AboutCountry": "Austria, Switzerland, Germany, Belgium, the Netherlands and Saudi Arabia"
+  },
+  "Certificate": {
+    "Title": "Certificate",
+    "Text": "TIMBER-EXPORT annually delivers 4,000 m3 of firewood and 1,000 tons of Ruf Briquettes. They are also preparing to export high-calorie wood pellets to Italy and Germany. Their wood comes from Croatian forests with FSC certification. TIMBER-EXPORT has its own delivery fleet and cooperates with other transport companies to efficiently fulfill orders.",
+    "SubText": "The project was co-financed by the European Union from the European Fund for Regional Development"
+  },
+  "Products": {
+    "Title": "Products and services",
+    "Firewood": "Firewood",
+    "Briquettes": "Briquettes",
+    "Pellets": "Pellets",
+    "Parquet": "Parquet",
+    "ConstructionWood": "ConstructionWood",
+    "Transit": "Transit"
+  },
+  "Contact": {
+    "Title": "Contact us",
+    "ShortDescription": "Contact us with any inquiry you have (price, quantity...) about our products.",
+    "ContactBack": "We'll contact you back with the response!",
+    "Send": "Send",
+    "Name": "Firstname Lastname",
+    "Email": "Email",
+    "Phone": "Phone",
+    "Product": "Product",
+    "Description": "Description"
   }
 }

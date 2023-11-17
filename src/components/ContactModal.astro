@@ -1,0 +1,124 @@
+---
+import Modal from './Modal.astro';
+import InputField from '../components/InputField.astro';
+import Textbox from '../components/Textbox.astro';
+import Select from './Select.astro';
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props {
+  selected?: string;
+}
+
+const errors = { email: '', description: '', name: '' };
+const emailRegex: RegExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+export const prerender = true;
+const options = [
+  { id: 'firewood', label: 'Firewood' },
+  { id: 'parquet', label: 'Parquet' },
+  { id: 'briquette', label: 'Briquette' },
+  { id: 'pellets', label: 'Pellets' },
+  { id: 'constructionWood', label: 'Construction wood' },
+];
+
+interface Props extends HTMLAttributes<'div'> {}
+
+const { id, selected } = Astro.props;
+---
+
+<Modal id={id} title='Contact us'>
+  <form id='contact-form' action='' class='space-y-4'>
+    <InputField
+      id='name'
+      name='name'
+      label='Firstname Lastname'
+      error={errors.name}
+    />
+    <InputField id='email' name='email' label='Email' error={errors.email} />
+    <InputField id='phone' name='phone' label='Phone' />
+    <Select
+      id='type'
+      label='Type'
+      name='type'
+      options={options}
+      selected={selected}
+    />
+    <Textbox
+      id='description'
+      name='description'
+      label='Description'
+      error={errors.description}
+    />
+    <button
+      id='send-button'
+      class='px-3 py-2 bg-dark hover:bg-darker ease-in-out duration-300 text-white w-full disabled:bg-gray-300'
+      >Send</button
+    >
+  </form>
+</Modal>
+
+<script lang='ts'>
+const name = document.getElementById('name');
+const email = document.getElementById('email');
+const phone = document.getElementById('phone');
+const description = document.getElementById('description');
+const form = document.getElementById('contact-form');
+const selectType = document.getElementById('type');
+const sendButton = document.getElementById('send-button');
+const toast = document.getElementById('toast-success');
+const errorToast = document.getElementById('toast-danger');
+
+const displayToast = () => {
+  toast.classList.remove('hidden');
+  toast.classList.add('flex');
+};
+
+const hideToast = () => {
+  toast.classList.remove('flex');
+  toast.classList.add('hidden');
+};
+
+const displayToastError = () => {
+  errorToast.classList.remove('hidden');
+  errorToast.classList.add('flex');
+};
+
+const hideToastError = () => {
+  errorToast.classList.remove('flex');
+  errorToast.classList.add('hidden');
+};
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  sendButton.disabled = true;
+  try {
+    const response = await emailjs.send(
+      'service_e7lwvjg',
+      'template_hcf437k',
+      {
+        description: description.value,
+        from_name: name.value,
+        reply_to: email.value,
+        phone: phone.value,
+        type: selectType.options[selectType.selectedIndex].text,
+      },
+      '7RY8sLAw5BgxZXmHC'
+    );
+
+    if (response.status === 200) {
+      const modal = document.getElementById('contact-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+    displayToast();
+  } catch (error) {
+    displayToastError();
+  } finally {
+    sendButton.disabled = false;
+    setTimeout(() => {
+      hideToast();
+      hideToastError();
+    }, 3000);
+  }
+});
+</script>

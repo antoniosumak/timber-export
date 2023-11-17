@@ -1,0 +1,132 @@
+---
+import InputField from './InputField.astro';
+import Select from './Select.astro';
+import Textbox from './Textbox.astro';
+import { Icon } from 'astro-icon';
+import ToastError from './ToastError.astro';
+import Toast from './Toast.astro';
+export const prerender = true;
+import { t } from 'i18next';
+
+const options = [
+  { id: 'firewood', label: 'Firewood' },
+  { id: 'parquet', label: 'Parquet' },
+  { id: 'briquette', label: 'Briquette' },
+  { id: 'pellets', label: 'Pellets' },
+  { id: 'constructionWood', label: 'Construction wood' },
+];
+
+const errors = { email: '', description: '', name: '' };
+---
+
+<div class='w-full h-full flex items-center justify-center'>
+  <div class='w-full grid grid-cols-1 md:grid-cols-5 p-4 gap-4 md:gap-10'>
+    <div class='md:col-span-3'>
+      <form class='space-y-3' id='contact-form'>
+        <InputField
+          id='name'
+          name='name'
+          label={t('Contact.Name')}
+          error={errors.name}
+        />
+        <InputField
+          id='email'
+          name='email'
+          label={t('Contact.Email')}
+          error={errors.email}
+        />
+        <InputField id='phone' name='phone' label={t('Contact.Phone')} />
+        <Select options={options} label={t('Contact.Product')}' name='type' id='type' />
+        <Textbox
+          id='description'
+          name='description'
+          label={t('Contact.Description')}
+          error={errors.description}
+        />
+        <button
+          id='send-button'
+          class='px-3 py-2 bg-dark hover:bg-darker ease-in-out duration-300 text-white w-full disabled:bg-gray-300'
+          >{t('Contact.Send')}</button
+        >
+      </form>
+    </div>
+    <div class='md:col-span-2 space-y-4 relative'>
+      <h3>
+        {t('Contact.ShortDescription')}
+        <br />
+        {t('Contact.ContactBack')}
+      </h3>
+      <div class='flex items-center gap-3'>
+        <div
+          class='w-10 h-10 flex items-center justify-center bg-slate-300 rounded-full'
+        >
+          <Icon size='24' name='ic:sharp-location-on' />
+        </div>
+        <p>Gajeva 26, 44320 Kutina, Hrvatska</p>
+      </div>
+      <div class='flex items-center gap-4'>
+        <div
+          class='w-10 h-10 flex items-center justify-center bg-slate-300 rounded-full'
+        >
+          <Icon size='24' name='ic:baseline-email' />
+        </div>
+        <p>ivan.ivanblazinic@gmail.com</p>
+      </div>
+      <div class='flex items-center gap-4'>
+        <div
+          class='w-10 h-10 flex items-center justify-center bg-slate-300 rounded-full'
+        >
+          <Icon size='24' name='ic:baseline-phone' />
+        </div>
+        <p>+385 98-557-345</p>
+      </div>
+      <div class='flex items-center gap-4'>
+        <div
+          class='w-10 h-10 flex items-center justify-center bg-slate-300 rounded-full'
+        >
+          <Icon size='24' name='ic:round-access-time-filled' />
+        </div>
+        <p>08:00-17:00</p>
+      </div>
+      <div class='absolute bottom-0' id='email-confirmation'></div>
+    </div>
+  </div>
+</div>
+
+<script lang='ts'>
+const name = document.getElementById('name');
+const email = document.getElementById('email');
+const phone = document.getElementById('phone');
+const description = document.getElementById('description');
+const form = document.getElementById('contact-form');
+const selectType = document.getElementById('type');
+const sendButton = document.getElementById('send-button');
+const emailConfirmation = document.getElementById('email-confirmation');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  sendButton.disabled = true;
+  try {
+    const response = await emailjs.send(
+      'service_e7lwvjg',
+      'template_hcf437k',
+      {
+        description: description.value,
+        from_name: name.value,
+        reply_to: email.value,
+        phone: phone.value,
+        type: selectType.options[selectType.selectedIndex].text,
+      },
+      '7RY8sLAw5BgxZXmHC'
+    );
+    emailConfirmation.innerText = '✅ Email sent successfully!';
+  } catch (error) {
+    emailConfirmation.innerText = '❌ Email was not sent, an error happened!';
+  } finally {
+    sendButton.disabled = false;
+    setTimeout(() => {
+      emailConfirmation.innerText = '';
+    }, 3000);
+  }
+});
+</script>

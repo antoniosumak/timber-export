@@ -1,0 +1,12 @@
+---
+interface Props {
+  text?: string;
+  color: string;
+}
+
+const { text, color } = Astro.props;
+---
+
+<h2 class={`${color} text-lg font-medium underline decoration-2 `}>
+  {text}
+</h2>

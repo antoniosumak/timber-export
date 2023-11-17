@@ -1,0 +1,35 @@
+---
+interface Props {
+  text: string;
+  type: 'primary' | 'secondary';
+  size: 'sm' | 'md' | 'lg' | 'full';
+  disabled?: boolean;
+}
+
+const { text, disabled, type, size } = Astro.props;
+
+const classes = {
+  base: 'focus:outline-none transition ease-in-out duration-300 mt-4',
+  disabled: 'opacity-50 cursor-not-allowed',
+  size: {
+    sm: 'px-2 py-1 text-sm',
+    md: 'px-4 py-2',
+    lg: 'px-8 py-3 text-lg',
+    full: 'px-4 py-2 w-full',
+  },
+  variant: {
+    primary:
+      'bg-primary hover:bg-primaryhover focus:ring-2 focus:ring-primary focus:ring-opacity-50 text-white',
+    secondary:
+      'bg-secondary hover:bg-secondaryhover focus:ring-2 focus:ring-secondary focus:ring-opacity-50 text-white',
+  },
+};
+---
+
+<button
+  class={`${classes.base} ${disabled && classes.disabled} ${
+    classes.variant[type]
+  } ${classes.size[size]}`}
+>
+  {text}
+</button>

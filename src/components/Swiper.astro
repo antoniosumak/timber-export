@@ -4,15 +4,17 @@ import Icon from 'astro-icon';
 
 interface Props {
   imageUrls: string[];
+  height?: string;
+  customImage?: boolean;
 }
-const { imageUrls } = Astro.props;
+const { imageUrls, height, customImage } = Astro.props;
 ---
 
-<div class='swiper w-full h-80'>
+<div class={`swiper w-full ${height}`}>
   <div class='swiper-wrapper'>
     {
       imageUrls.map((url) => (
-        <div class='swiper-slide'>
+        <div class='swiper-slide h-full'>
           <Image src={url} alt='Images' aspectRatio='16:9' />
         </div>
       ))
@@ -22,12 +24,12 @@ const { imageUrls } = Astro.props;
   <div class='swiper-pagination'></div>
 
   <div
-    class='swiper-button-prev top-4 bottom-0 w-8 bg-[rgba(0,0,0,0.1)] hover:bg-[rgba(0,0,0,0.6)] left-0 h-full'
+    class='swiper-button-prev top-4 bottom-0 w-8 bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.3)] left-0 h-full'
   >
     <Icon name='fe:arrow-left' class='text-white' />
   </div>
   <div
-    class='swiper-button-next top-4 bottom-0 w-8 bg-[rgba(0,0,0,0.1)] hover:bg-[rgba(0,0,0,0.6)] right-0 h-full'
+    class='swiper-button-next top-4 bottom-0 w-8 bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.3)] right-0 h-full'
   >
     <Icon name='fe:arrow-right' class='text-white' />
   </div>

@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+interface Props extends HTMLAttributes<'select'> {
+  options: { id: string; label: string }[];
+  label: string;
+  selected?: string;
+}
+
+const { options, name, label, id, selected } = Astro.props;
+---
+
+<div class='flex flex-col gap-1'>
+  <label for={name}>{label}</label>
+  <select
+    id={id}
+    name={name}
+    class='border py-2 indent-1 focus:border-dark focus:outline-dark w-full'
+  >
+    {
+      options.map((option) => (
+        <option selected={selected === option.id} value={option.label}>
+          {option.label}
+        </option>
+      ))
+    }
+  </select>
+</div>

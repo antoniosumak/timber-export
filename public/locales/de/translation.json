@@ -1,0 +1,19 @@
+{
+    "Header": {
+      "Home": "Startseite",
+      "AboutUs": "Über uns",
+      "Products": "Produkte",
+      "Firewood": "Brennholz",
+      "Briquettes": "Briketts",
+      "Pellets": "Pellets",
+      "Gallery": "Galerie",
+      "Contact": "Kontakt"
+    },
+    "Hero": {
+      "FirstTitle": "Brennholz und Pellets",
+      "SecondTitle": "für Ihren warmen und angenehmen Winter!",
+      "ShortSubheader": "Unsere Produkte werden sorgfältig ausgewählt, um eine gleichmäßige Erhitzung und eine lang anhaltende Verbrennung zu gewährleisten. Bestellen Sie jetzt und erleben Sie den ultimativen Heizkomfort, unabhängig von der Jahreszeit",
+      "ButtonText": "Produkte"
+    }
+  }
+  

@@ -1,0 +1,19 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'input'> {
+  label: string;
+  error?: string;
+}
+
+const { name, label, type, error, id } = Astro.props;
+---
+
+<div class='flex flex-col gap-1'>
+  <label for={name}>{label}</label>
+  <textarea
+    id={id}
+    class='border py-1 indent-1 focus:border-dark focus:outline-dark'
+    name={name}></textarea>
+  {error && <span class='text-red-500 text-sm'>{error}</span>}
+</div>

@@ -3,11 +3,18 @@ import { Image } from '@astrojs/image/components';
 import PelletImage from '../images/pellets_showcase.png';
 import FirewoodImage from '../images/firewood_showcase.png';
 import TransportImage from '../images/truck_showcase.png';
+import BriquetteImage from '../images/briquettes.png';
+import ParketImage from '../images/parket.jpeg';
+import ConstructionImage from '../images/construction.jpeg';
+import i18next, { t } from 'i18next';
 
 const images: Record<string, any> = {
-  'drva-za-ogrijev': FirewoodImage,
-  peleti: PelletImage,
-  prijevoz: TransportImage,
+  firewood: FirewoodImage,
+  pellets: PelletImage,
+  briquettes: BriquetteImage,
+  parquette: ParketImage,
+  construction: ConstructionImage,
+  transit: TransportImage,
 };
 
 export interface Props {
@@ -21,21 +28,27 @@ export interface Product {
 }
 
 const { products } = Astro.props;
+const lang = i18next.language;
+const base = lang === 'en' ? '' : `/${lang}`;
 ---
 
-<div class='grid grid-cols-3 gap-10'>
+<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
   {
     products.map((product) => (
-      <div class='group nice-shadow flex flex-col items-center justify-center transition-all ease-in-out duration-300 border hover:border-dark p-4 cursor-pointer'>
-        <Image
-          src={images[product.id]}
-          alt={product.name}
-          class='w-6/12 transition-all ease-in-out duration-300 group-hover:scale-110'
-          aspectRatio='1:1'
-          height='500'
-        />
-        <h3 class='text-xl font-bold'>{product.name}</h3>
-      </div>
+      <a href={`${base}/products/${product.id}`}>
+        <div class='group nice-shadow flex flex-col items-center justify-center transition-all ease-in-out duration-300 border hover:border-dark cursor-pointer '>
+          <div class='w-full h-full overflow-hidden'>
+            <Image
+              src={images[product.id]}
+              alt={product.name}
+              class='w-full transition-all ease-in-out duration-300 group-hover:scale-110'
+              aspectRatio='1:1'
+              height='500'
+            />
+          </div>
+          <h3 class='text-xl font-bold p-3'>{t(`Products.${product.name}`)}</h3>
+        </div>
+      </a>
     ))
   }
 </div>

@@ -1,7 +1,13 @@
 ---
 import Icon from 'astro-icon';
-import LanguageDropdown from './LanguageDropdown.astro';
+import { LanguageSelector } from 'astro-i18next/components';
+
 import { routes } from './Navigation.astro';
+
+import i18next, { t } from 'i18next';
+
+const lang = i18next.language;
+const base = lang === 'en' ? '' : `/${lang}`;
 ---
 
 <div
@@ -13,11 +19,7 @@ import { routes } from './Navigation.astro';
       class='w-full h-16 bg-darker text-text-darker flex justify-between items-center px-2'
     >
       <div class='relative group'>
-        <Icon
-          name='fluent:local-language-16-filled'
-          class='w-8 cursor-pointer'
-        />
-        <LanguageDropdown />
+        <LanguageSelector showFlag class='bg-darker' />
       </div>
       <Icon
         id='sidebar-close'
@@ -30,7 +32,7 @@ import { routes } from './Navigation.astro';
         routes.map((route) => (
           <div class='flex items-center justify-between text-white'>
             <a class='w-full' href={route.path}>
-              {route.name}
+              {t(route.name)}
             </a>
             {route.children && (
               <Icon

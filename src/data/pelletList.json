@@ -1,0 +1,50 @@
+[
+    {
+        "id": "more",
+        "title": "DI-MORE",
+        "description": "A1 pelet",
+        "size" : "15kg"
+    },
+    {
+        "id": "spelet",
+        "title": "Š Pelet",
+        "description": "A2 pelet",
+        "size" : "15kg"
+    },
+    {
+        "id": "pin",
+        "title": "PIN PELET",
+        "description": "A1 pelet",
+        "size" : "15kg"
+    },
+    {
+        "id": "woody",
+        "title": "Woody pelet",
+        "description": "A1 pelet",
+        "size" : "15kg"
+    },
+    {
+        "id": "delnice",
+        "title": "Energi pelet Delnice",
+        "description": "A2 pelet",
+        "size" : "15kg"
+    },
+    {
+        "id": "grupa",
+        "title": "Pelet group Enplus",
+        "description": "A1 pelet",
+        "size" : "15kg"
+    },
+    {
+        "id": "gold",
+        "title": "RST Premium Gold",
+        "description": "A1 pelet",
+        "size" : "15kg"
+    },
+    {
+        "id": "platin",
+        "title": "RST Premium Platin",
+        "description": "A1 pelet",
+        "size" : "15kg"
+    }
+]

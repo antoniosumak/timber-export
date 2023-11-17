@@ -1,0 +1,59 @@
+---
+import { Image } from '@astrojs/image/components';
+import SimpleButton from './SimpleButton.astro';
+import i18next, { t } from 'i18next';
+import Badge from './Badge.astro';
+interface Props {
+  title: string;
+  description: string;
+  id: string;
+  size?: string;
+  type: 'briquettes' | 'pellets' | 'parquette';
+}
+
+const { title, description, id, size, type } = Astro.props;
+const lang = i18next.language;
+const base = lang === 'en' ? '' : `/${lang}`;
+const imageObj = {
+  briquettes: `../images/briquettes/${id}.jpg`,
+  pellets: `../images/pellets/${id}.jpg`,
+  parquette: `../images/parquette/${id}.jpg`,
+};
+
+const urlObj = {
+  briquettes: `${base}/products/briquettes/${id}`,
+  pellets: `${base}/products/pellets/${id}`,
+  parquette: `${base}/products/parquette/${id}`,
+};
+
+const image = imageObj[type];
+const url = urlObj[type];
+---
+
+<div class='bg-white p-6 space-y-2 nice-shadow h-full'>
+  <div>
+    <Image
+      class='object-cover w-full h-full'
+      src={import(`${image}`)}
+      alt={title}
+      width={400}
+      height={600}
+    />
+  </div>
+  <div class='space-y-1'>
+    <h3 class='font-medium'>{title}</h3>
+    <div class='flex items-center gap-1'>
+      <Badge text={description} />
+      {size && <Badge text={size} />}
+    </div>
+  </div>
+  <a href={url}>
+    <SimpleButton text='Detalji' type='primary' size='full' />
+  </a>
+</div>
+
+<style>
+  .nice-shadow {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+</style>

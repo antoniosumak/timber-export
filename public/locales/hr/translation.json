@@ -8,5 +8,16 @@
     "Pellets": "Peleti",
     "Gallery": "Galerija",
     "Contact": "Kontakt"
+  },
+  "Hero": {
+    "FirstTitle": "Drva za ogrijev i pelet",
+    "SecondTitle": "za Vašu toplu i ugodnu zimu!",
+    "ShortSubheader": "Naši su proizvodi pažljivo nabavljeni kako bi se osiguralo dosljedno grijanje i dugotrajno izgaranje. Naručite sada i iskusite vrhunsku udobnost grijanja, bez obzira na godišnje doba",
+    "ButtonText": "Proizvodi"
+  },
+  "Certificate" : {
+    "Title" : "Certifikati",
+    "Text" : "TIMBER-EXPORT godišnje isporuči 4.000 m3 ogrjevnog drveta i 1.000 tona Ruf Briketa. Također se pripremaju za izvoz visokokaloričnih drvenih peleta u Italiju i Njemačku. Njihovo drvo dolazi iz Hrvatskih šuma s FSC certifikatom. TIMBER-EXPORT ima vlastitu flotu za dostavu i surađuje s drugim prijevozničkim tvrtkama za učinkovito ispunjavanje narudžbi.",
+    "SubText" : "Projekt je sufinancirala Europska unija iz Europskog fonda za regionalni razvoj"
   }
 }

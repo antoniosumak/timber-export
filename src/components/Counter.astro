@@ -1,23 +1,24 @@
 ---
 import { Icon } from 'astro-icon';
+import { t } from 'i18next';
 const counterElements = [
   {
-    id: 'products',
+    id: 'Products',
     label: 'Tona proizvoda',
     icon: 'lucide:truck',
   },
   {
-    id: 'countries',
+    id: 'Countries',
     label: 'Zemlja izvoza',
     icon: 'lucide:globe-2',
   },
   {
-    id: 'clients',
+    id: 'Clients',
     label: 'Zadovoljnih klijenata',
     icon: 'lucide:users',
   },
   {
-    id: 'years',
+    id: 'Years',
     label: 'Godina iskustva',
     icon: 'lucide:clock',
   },
@@ -38,7 +39,7 @@ const counterElements = [
             id={counter.id}
           />
           <p class='text-center text-3xs md:text-xs text-gray-400 relative z-2'>
-            {counter.label}
+            {t(`ShortIntro.${counter.id}`)}
           </p>
         </div>
       ))
@@ -49,10 +50,10 @@ const counterElements = [
 <script>
   import { CountUp } from 'countup.js';
 
-  const productsCounter = new CountUp('products', 20000);
-  const countriesCounter = new CountUp('countries', 5);
-  const clientsCounter = new CountUp('clients', 500);
-  const yearsCounter = new CountUp('years', 7);
+  const productsCounter = new CountUp('Products', 20000);
+  const countriesCounter = new CountUp('Countries', 7);
+  const clientsCounter = new CountUp('Clients', 500);
+  const yearsCounter = new CountUp('Years', new Date().getFullYear() - 2016);
   productsCounter.start();
   countriesCounter.start();
   clientsCounter.start();

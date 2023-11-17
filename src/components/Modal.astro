@@ -1,0 +1,47 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Icon } from 'astro-icon';
+interface Props extends HTMLAttributes<'div'> {
+  title?: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<div
+  class='fixed modal inset-0 z-50 bg-[rgb(0,0,0,0.35)] items-center justify-center hidden'
+  id={id}
+>
+  <div class='bg-white w-11/12 md:w-7/12 lg:w-[500px]'>
+    <div class='w-full h-16 bg-gray-100 flex items-center px-6 justify-between'>
+      <h3 class='text-xl font-bold'>{title}</h3>
+      <Icon
+        id='close-icon'
+        name='fe:close'
+        class='w-6 hover:text-red-500 cursor-pointer'
+        width='10'
+      />
+    </div>
+    <div class='bg-white px-6 py-4'>
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.querySelector('.modal');
+  const closeIcon = document.getElementById('close-icon');
+
+  function closeModal() {
+    modal?.classList.remove('flex');
+    modal?.classList.add('hidden');
+  }
+
+  closeIcon?.addEventListener('click', closeModal);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+</script>
