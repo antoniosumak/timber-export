@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
-import { Image } from '@astrojs/image/components';
+import { Image } from 'astro:assets';
 const images = await Astro.glob('/src/images/gallery/*').then((files) => {
   return files.map((file) => {
     const url = file.default.src;
