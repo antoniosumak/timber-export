@@ -1,16 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
-import Section from '../../../components/Section.astro';
-import Layout from '../../../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import Button from '../../../components/Button.astro';
-import Subtitle from '../../../components/Subtitle.astro';
-import Badge from '../../../components/Badge.astro';
-import ContactModal from '../../../components/ContactModal.astro';
+import { changeLanguage } from "i18next";
+import { getCollection } from "astro:content";
+import Section from "../../../components/Section.astro";
+import Layout from "../../../layouts/Layout.astro";
+import { Image } from "@astrojs/image/components";
+import Button from "../../../components/Button.astro";
+import Subtitle from "../../../components/Subtitle.astro";
+import Badge from "../../../components/Badge.astro";
+import ContactModal from "../../../components/ContactModal.astro";
+
+changeLanguage("en");
 
 const { slug } = Astro.params;
-
-const parquetteList = await getCollection('parquette');
+const parquetteList = await getCollection("parquette");
 const data = parquetteList.find((briquette) => briquette.slug === slug);
 const parquette = data?.data;
 ---

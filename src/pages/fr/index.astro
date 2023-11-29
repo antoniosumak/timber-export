@@ -1,6 +1,6 @@
 ---
 import { changeLanguage } from "i18next";
-import { Image } from "astro:assets";
+import { Image } from "@astrojs/image/components";
 import Counter from "../../components/Counter.astro";
 import Hero from "../../components/Hero.astro";
 import IntroText from "../../components/IntroText.astro";
@@ -16,7 +16,7 @@ import esif from "../../images/esif2.jpg";
 import ProductsShowcase from "../../components/ProductsShowcase.astro";
 import type { Product } from "../../components/ProductsShowcase.astro";
 
-changeLanguage("fr");
+changeLanguage("en");
 
 const products: Product[] = [
     {

@@ -1,6 +1,6 @@
 ---
 import { changeLanguage } from "i18next";
-import { Image } from "astro:assets";
+import { Image } from "@astrojs/image/components";
 import Counter from "../../components/Counter.astro";
 import Hero from "../../components/Hero.astro";
 import IntroText from "../../components/IntroText.astro";
@@ -15,6 +15,9 @@ import eu from "../../images/eu-1.jpg";
 import esif from "../../images/esif2.jpg";
 import ProductsShowcase from "../../components/ProductsShowcase.astro";
 import type { Product } from "../../components/ProductsShowcase.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import { t, changeLanguage } from "i18next";
+import "../../global.css";
 
 changeLanguage("de");
 
@@ -23,7 +26,10 @@ const products: Product[] = [
         id: "firewood",
         name: "Firewood",
     },
+    { id: "briquettes", name: "Briquettes" },
     { id: "pellets", name: "Pellets" },
+    { id: "parquette", name: "Parquet" },
+    { id: "construction", name: "ConstructionWood" },
     {
         id: "transit",
         name: "Transit",
@@ -42,23 +48,18 @@ const products: Product[] = [
       <VideoPlayer />
       <VideoPlayer />
     </div> -->
-    <Section>
+    <Section id='about'>
       <div class='grid grid-cols-1 md:grid-cols-2 gap-16'>
         <div class='space-y-6'>
-          <h2 class='text-2xl md:text-4xl font-bold'>O nama</h2>
+          <h2 class='text-2xl md:text-4xl font-bold'>{t('About.Title')}</h2>
           <p class='text-sm text-justify leading-6'>
-            <strong>TIMBER-EXPORT</strong> je vodeći izvoznik ogrjevnog drveta iz
-            Hrvatske na njemačko tržište. Osnovana u Kutini 2011. godine od strane
-            vlasnika <strong
+            <strong>TIMBER-EXPORT</strong>
+            {t('About.About1')}
+            <strong
               class='underline underline-offset-2 decoration-2 underline-primary'
               >Mirjane i Ivana Blazinić</strong
-            >, tvrtka je specijalizirana za <strong
-              >distribuciju drva za ogrjev i peleta</strong
-            >. S obiteljskom poviješću u drvnoj industriji, par koristi svoje
-            iskustvo za pružanje kvalitetnih proizvoda i isporuke. Tvrtka je
-            započela sa izvozom u <strong>Italiju</strong>, a od tada se
-            proširila na tržišta
-            <strong> Austrije, Švicarske i Njemačke</strong>.
+            >, {t('About.About2')}
+            <strong> {t('About.AboutCountry')}</strong>.
           </p>
         </div>
         <Swiper height='h-80' imageUrls={[testImage, testImage, testImage]} />
@@ -66,7 +67,6 @@ const products: Product[] = [
     </Section>
     <Section>
       <div class='grid grid-cols-1 md:grid-cols-2 gap-16'>
-        <!-- <Swiper imageUrls={[testImage, testImage, testImage]} /> -->
         <div class='grid grid-cols-2 place-items-center gap-0'>
           <Image src={fscCertificate} height='200' alt='Fsc certificate' />
           <div>
@@ -76,24 +76,23 @@ const products: Product[] = [
           </div>
         </div>
         <div class='space-y-6 order-first md:order-last relative'>
-          <h2 class='text-2xl md:text-4xl font-bold'>Certifikati</h2>
+          <h2 class='text-2xl md:text-4xl font-bold'>
+            {t('Certificate.Title')}
+          </h2>
           <p class='text-sm text-justify leading-6'>
-            TIMBER-EXPORT godišnje isporuči 4.000 m3 ogrjevnog drveta i 1.000
-            tona Ruf Briketa. Također se pripremaju za izvoz visokokaloričnih
-            drvenih peleta u Italiju i Njemačku. Njihovo drvo dolazi iz
-            Hrvatskih šuma s FSC certifikatom. TIMBER-EXPORT ima vlastitu flotu
-            za dostavu i surađuje s drugim prijevozničkim tvrtkama za učinkovito
-            ispunjavanje narudžbi.
+            {t('Certificate.Text')}
           </p>
           <p class='text-xs font-medium text-dark'>
-            Projekt je sufinancirala Europska unija iz Europskog fonda za
-            regionalni razvoj
+            {t('Certificate.SubText')}
           </p>
         </div>
       </div>
     </Section>
-    <Section title='Proizvodi i usluge'>
+    <Section id="products" title={t('Products.Title')}>
       <ProductsShowcase products={products} />
+    </Section>
+    <Section id='contact' title={t('Contact.Title')}>
+      <ContactForm />
     </Section>
   </main>
 </Layout>

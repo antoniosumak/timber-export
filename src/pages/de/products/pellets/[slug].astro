@@ -1,0 +1,90 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "../../../../layouts/Layout.astro";
+import Section from "../../../../components/Section.astro";
+import { getCollection } from "astro:content";
+import { Image } from "@astrojs/image/components";
+import Button from "../../../../components/Button.astro";
+import ContactModal from "../../../../components/ContactModal.astro";
+import Subtitle from "../../../../components/Subtitle.astro";
+
+changeLanguage("de");
+
+const { slug } = Astro.params;
+const pellets = await getCollection("pellet");
+const pellet = pellets.find((value) => value.slug === slug);
+const data = pellet?.data;
+---
+
+<Layout title='Peleti'>
+  <Section title='Peleti'>
+    <div class='w-full flex items-start gap-8 h-full'>
+      <div class='w-5/12 h-[600px]'>
+        <Image
+          class='w-full h-full object-fit object-center'
+          src={import(`../../../images/pellets/${slug}.jpg`)}
+          alt={data?.title || 'product image'}
+          height={800}
+        />
+      </div>
+      <div class='space-y-4'>
+        <Subtitle text={data?.title} color='text-black' />
+        {
+          data?.woodType && (
+            <div>
+              <Subtitle text='Sastav' color='text-black' />
+              {data?.woodType.map((type) => (
+                <p>
+                  {type.name}: {type.percentage}
+                </p>
+              ))}
+            </div>
+          )
+        }
+        <div>
+          <Subtitle text='Udio pepela' color='text-black' />
+          <p>{data?.ashPercentage}</p>
+        </div>
+        <div>
+          <Subtitle text='Kalorijska vrijednost' color='text-black' />
+          <p>{data?.caloricValue}</p>
+        </div>
+        <div>
+          <Subtitle text='Vlažnost' color='text-black' />
+          <p>{data?.humidity}</p>
+        </div>
+        <div>
+          <Subtitle text='Promjer' color='text-black' />
+          <p>{data?.diameter}</p>
+        </div>
+        <div>
+          <Subtitle text='Pakiranje' color='text-black' />
+          {
+            data?.packaging.map((packageInfo) => (
+              <p>
+                {packageInfo.quantity} vreća: {packageInfo.weight}
+              </p>
+            ))
+          }
+        </div>
+        <Button
+          id='contact-button'
+          buttonType='primary'
+          text='Order'
+          icon='fe:mail'
+        />
+      </div>
+    </div>
+  </Section>
+  <ContactModal id='contact-modal' selected={'pellets'} />
+</Layout>
+
+<script>
+  const contactButton = document.getElementById('contact-button');
+  const modal = document.getElementById('contact-modal');
+
+  contactButton?.addEventListener('click', () => {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  });
+</script>

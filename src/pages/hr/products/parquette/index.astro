@@ -1,0 +1,27 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "../../../../layouts/Layout.astro";
+import Section from "../../../../components/Section.astro";
+import data from "../../../../data/parquetteList.json";
+import ItemCard from "../../../../components/ItemCard.astro";
+import Grid from "../../../../components/Grid.astro";
+
+changeLanguage("hr");
+---
+
+<Layout title='Parquette'>
+  <Section title='Parquette'>
+    <Grid>
+      {
+        data.map((pellet) => (
+          <ItemCard
+            title={pellet.title}
+            description={pellet.description}
+            id={pellet.id}
+            type='parquette'
+          />
+        ))
+      }
+    </Grid>
+  </Section>
+</Layout>

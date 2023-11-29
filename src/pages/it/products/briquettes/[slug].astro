@@ -1,0 +1,83 @@
+---
+import { changeLanguage } from "i18next";
+import { getCollection } from "astro:content";
+import Section from "../../../../components/Section.astro";
+import Layout from "../../../../layouts/Layout.astro";
+import { Image } from "@astrojs/image/components";
+import Button from "../../../../components/Button.astro";
+import Subtitle from "../../../../components/Subtitle.astro";
+import ContactModal from "../../../../components/ContactModal.astro";
+
+changeLanguage("it");
+
+const { slug } = Astro.params;
+const briquettes = await getCollection("briquette");
+const data = briquettes.find((briquette) => briquette.slug === slug);
+const briquette = data?.data;
+---
+
+<Layout title='Briquettes'>
+  <Section title='Briquettes'>
+    <div class='w-full flex items-start gap-8 h-full'>
+      <div class='w-5/12 h-[600px]'>
+        <Image
+          class='w-full h-full object-fit object-center'
+          src={import(`../../../images/briquettes/${slug}.jpg`)}
+          alt={briquette?.title || 'product image'}
+          height={800}
+        />
+      </div>
+      <div class='space-y-4'>
+        <Subtitle text={briquette?.title} color='text-black' />
+        <div>
+          <Subtitle text='Dimenzije' color='text-black' />
+          <p>Length: {briquette?.length}</p>
+          <p>Width: {briquette?.width}</p>
+          <p>Thickness: {briquette?.height}</p>
+        </div>
+        <div>
+          <Subtitle text='Sastav' color='text-black' />
+          {briquette?.composition.map((item) => <p>{item}</p>)}
+          {
+            briquette?.woodTypes.map((type) => (
+              <p>
+                {type.name}: {type.woods.join(', ')}
+              </p>
+            ))
+          }
+        </div>
+        <div>
+          <Subtitle text='Ogrjevna vrijednost' color='text-black' />
+          <p>{briquette?.caloricValue}</p>
+        </div>
+        <div>
+          <Subtitle text='Pakiranje' color='text-black' />
+          {
+            briquette?.packaging.map((packageInfo) => (
+              <p>
+                {packageInfo.quantity} pakiranja: {packageInfo.weight}
+              </p>
+            ))
+          }
+        </div>
+        <Button
+          id='contact-button'
+          buttonType='primary'
+          text='Order'
+          icon='fe:mail'
+        />
+      </div>
+    </div>
+  </Section>
+  <ContactModal id='contact-modal' selected='briquette' />
+</Layout>
+
+<script>
+  const contactButton = document.getElementById('contact-button');
+  const modal = document.getElementById('contact-modal');
+
+  contactButton?.addEventListener('click', () => {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  });
+</script>

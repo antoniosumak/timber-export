@@ -1,0 +1,69 @@
+---
+import { changeLanguage } from "i18next";
+import { getCollection } from "astro:content";
+import Section from "../../../../components/Section.astro";
+import Layout from "../../../../layouts/Layout.astro";
+import { Image } from "@astrojs/image/components";
+import Button from "../../../../components/Button.astro";
+import Subtitle from "../../../../components/Subtitle.astro";
+import Badge from "../../../../components/Badge.astro";
+import ContactModal from "../../../../components/ContactModal.astro";
+
+changeLanguage("hr");
+
+const { slug } = Astro.params;
+const parquetteList = await getCollection("parquette");
+const data = parquetteList.find((briquette) => briquette.slug === slug);
+const parquette = data?.data;
+---
+
+<Layout title='Parquette'>
+  <Section title='Parquette'>
+    <div class='w-full flex items-start gap-8 h-full'>
+      <div class='w-5/12 h-[600px]'>
+        <Image
+          class='w-full h-full object-fit object-center'
+          src={import(`../../../images/parquette/${slug}.jpg`)}
+          alt={parquette?.title || 'product image'}
+          height={800}
+        />
+      </div>
+      <div class='space-y-4'>
+        <Subtitle text={parquette?.title} color='text-black' />
+        <div>
+          <Subtitle text='Tip drva' color='text-black' />
+          <p>{parquette?.woodType}</p>
+        </div>
+        <div>
+          <Subtitle text='Debljina' color='text-black' />
+          <div class='flex items-center gap-2'>
+            {parquette?.thickness.map((height) => <Badge text={height} />)}
+          </div>
+        </div>
+        <div>
+          <Subtitle text='Duljina i širina' color='text-black' />
+          <div class='flex items-center gap-2'>
+            {parquette?.lengthWidth.map((lenWid) => <Badge text={lenWid} />)}
+          </div>
+        </div>
+        <Button
+          id='contact-button'
+          buttonType='primary'
+          text='Order'
+          icon='fe:mail'
+        />
+      </div>
+    </div>
+  </Section>
+  <ContactModal id='contact-modal' selected='parquet' />
+</Layout>
+
+<script>
+  const contactButton = document.getElementById('contact-button');
+  const modal = document.getElementById('contact-modal');
+
+  contactButton?.addEventListener('click', () => {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  });
+</script>

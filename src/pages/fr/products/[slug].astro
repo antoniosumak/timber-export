@@ -2,7 +2,7 @@
 import { changeLanguage } from "i18next";
 import Layout from "../../../layouts/Layout.astro";
 
-changeLanguage("fr");
+changeLanguage("en");
 
 export async function getStaticPaths() {
     return [{ params: { slug: "pellets" } }, { params: { slug: "transit" } }];

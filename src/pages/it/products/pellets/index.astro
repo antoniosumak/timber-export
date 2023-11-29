@@ -1,0 +1,28 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "../../../../layouts/Layout.astro";
+import Section from "../../../../components/Section.astro";
+import data from "../../../../data/pelletList.json";
+import ItemCard from "../../../../components/ItemCard.astro";
+import Grid from "../../../../components/Grid.astro";
+
+changeLanguage("it");
+---
+
+<Layout title='Peleti'>
+  <Section title='Peleti'>
+    <Grid>
+      {
+        data.map((pellet) => (
+          <ItemCard
+            title={pellet.title}
+            description={pellet.description}
+            id={pellet.id}
+            size={pellet.size}
+            type='pellets'
+          />
+        ))
+      }
+    </Grid>
+  </Section>
+</Layout>

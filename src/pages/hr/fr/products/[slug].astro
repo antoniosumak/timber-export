@@ -1,0 +1,15 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "../../../../layouts/Layout.astro";
+
+changeLanguage("hr");
+
+export async function getStaticPaths() {
+    return [{ params: { slug: "pellets" } }, { params: { slug: "transit" } }];
+}
+const { slug } = Astro.params;
+---
+
+<Layout title='Test'>
+  <h1>{slug}</h1>
+</Layout>

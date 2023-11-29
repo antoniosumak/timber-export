@@ -1,38 +1,39 @@
 ---
-import { changeLanguage } from 'i18next';
-import { Image } from 'astro:assets';
-import Counter from '../components/Counter.astro';
-import Hero from '../components/Hero.astro';
-import IntroText from '../components/IntroText.astro';
-import Section from '../components/Section.astro';
-import VideoPlayer from '../components/VideoPlayer.astro';
-import Layout from '../layouts/Layout.astro';
-import testImage from '../images/background1.jpg';
-import Swiper from '../components/Swiper.astro';
-import fscCertificate from '../images/fsc_certifikat.png';
-import hamag from '../images/hamag.jpg';
-import eu from '../images/eu-1.jpg';
-import esif from '../images/esif2.jpg';
-import ProductsShowcase from '../components/ProductsShowcase.astro';
-import type { Product } from '../components/ProductsShowcase.astro';
-import ContactForm from '../components/ContactForm.astro';
-import { t } from 'i18next';
-import '../global.css'
-changeLanguage('en');
+import { changeLanguage } from "i18next";
+import { Image } from "@astrojs/image/components";
+import Counter from "../components/Counter.astro";
+import Hero from "../components/Hero.astro";
+import IntroText from "../components/IntroText.astro";
+import Section from "../components/Section.astro";
+import VideoPlayer from "../components/VideoPlayer.astro";
+import Layout from "../layouts/Layout.astro";
+import testImage from "../images/background1.jpg";
+import Swiper from "../components/Swiper.astro";
+import fscCertificate from "../images/fsc_certifikat.png";
+import hamag from "../images/hamag.jpg";
+import eu from "../images/eu-1.jpg";
+import esif from "../images/esif2.jpg";
+import ProductsShowcase from "../components/ProductsShowcase.astro";
+import type { Product } from "../components/ProductsShowcase.astro";
+import ContactForm from "../components/ContactForm.astro";
+import { t, changeLanguage } from "i18next";
+import "../global.css";
+
+changeLanguage("en");
 
 const products: Product[] = [
-  {
-    id: 'firewood',
-    name: 'Firewood',
-  },
-  { id: 'briquettes', name: 'Briquettes' },
-  { id: 'pellets', name: 'Pellets' },
-  { id: 'parquette', name: 'Parquet' },
-  { id: 'construction', name: 'ConstructionWood' },
-  {
-    id: 'transit',
-    name: 'Transit',
-  },
+    {
+        id: "firewood",
+        name: "Firewood",
+    },
+    { id: "briquettes", name: "Briquettes" },
+    { id: "pellets", name: "Pellets" },
+    { id: "parquette", name: "Parquet" },
+    { id: "construction", name: "ConstructionWood" },
+    {
+        id: "transit",
+        name: "Transit",
+    },
 ];
 ---
 

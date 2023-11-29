@@ -1,0 +1,23 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "../../../../layouts/Layout.astro";
+import Section from "../../../../components/Section.astro";
+import Kamion1 from "../../../../images/transit/kamioni1.jpg";
+import Kamion2 from "../../../../images/transit/kamioni2.jpg";
+import Kamion3 from "../../../../images/transit/kamioni3.jpg";
+import Button from "../../../../components/Button.astro";
+import Swiper from "../../../../components/Swiper.astro";
+
+changeLanguage("de");
+---
+
+<Layout title='Transit'>
+  <Section title='Transit'>
+    <div class='flex gap-8 mb-4'>
+      <div class='w-5/12'>
+        <Swiper imageUrls={[Kamion1, Kamion2, Kamion3]} />
+      </div>
+      <div class='space-y-2'></div>
+    </div>
+  </Section>
+</Layout>

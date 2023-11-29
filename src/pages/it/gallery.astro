@@ -1,0 +1,34 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import { Image } from "@astrojs/image/components";
+
+changeLanguage("it");
+
+const images = await Astro.glob("/src/images/gallery/*").then((files) => {
+    return files.map((file) => {
+        const url = file.default.src;
+        const splitUrl = url.split("/");
+        return splitUrl[splitUrl.length - 1];
+    });
+});
+---
+
+<Layout title='Gallery'>
+  <Section title='Gallery'>
+    <div class='grid grid-cols-3 gap-4'>
+      {
+        images.map((image) => (
+          <Image
+            class='hover:scale-105 cursor-pointer transition ease-out duration-150'
+            src={import(`../images/gallery/${image}`)}
+            alt='Images'
+            aspectRatio='16:9'
+            height={500}
+          />
+        ))
+      }
+    </div>
+  </Section>
+</Layout>

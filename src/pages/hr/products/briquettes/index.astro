@@ -1,0 +1,28 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "../../../../layouts/Layout.astro";
+import Section from "../../../../components/Section.astro";
+import data from "../../../../data/briquetteList.json";
+import ItemCard from "../../../../components/ItemCard.astro";
+import Grid from "../../../../components/Grid.astro";
+
+changeLanguage("hr");
+---
+
+<Layout title='Briquettes'>
+  <Section title='Briquettes'>
+    <Grid>
+      {
+        data.map((briquette) => (
+          <ItemCard
+            title={briquette.title}
+            description={briquette.description}
+            id={briquette.id}
+            size={briquette.size}
+            type='briquettes'
+          />
+        ))
+      }
+    </Grid>
+  </Section>
+</Layout>

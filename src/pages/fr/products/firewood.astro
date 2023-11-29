@@ -4,14 +4,14 @@ import { getCollection } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
 import Section from "../../../components/Section.astro";
 import WoodPalete from "../../../images/firewood_showcase.png";
-import { Image } from "astro:assets";
+import { Image } from "@astrojs/image/components";
 import Badge from "../../../components/Badge.astro";
 import Title from "../../../components/Title.astro";
 import Subtitle from "../../../components/Subtitle.astro";
 import Swiper from "../../../components/Swiper.astro";
 import Button from "../../../components/Button.astro";
 
-changeLanguage("fr");
+changeLanguage("en");
 
 const units: Record<string, string> = {
     width: "m",

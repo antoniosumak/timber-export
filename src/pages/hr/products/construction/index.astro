@@ -1,0 +1,65 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "../../../../layouts/Layout.astro";
+import Section from "../../../../components/Section.astro";
+import Swiper from "../../../../components/Swiper.astro";
+import Greda5 from "../../../../images/constrution/greda5.jpg";
+import Greda6 from "../../../../images/constrution/greda6.jpg";
+import Greda7 from "../../../../images/constrution/greda7.jpg";
+import Subtitle from "../../../../components/Subtitle.astro";
+import Button from "../../../../components/Button.astro";
+import ContactModal from "../../../../components/ContactModal.astro";
+
+changeLanguage("hr");
+---
+
+<Layout title='Construction wood'>
+  <Section title='Construction wood'>
+    <div class='flex gap-8 mb-4'>
+      <div class='w-5/12'>
+        <Swiper imageUrls={[Greda5, Greda6, Greda7]} />
+      </div>
+      <div class='space-y-2'>
+        <div>
+          <Subtitle text='Wood type' color='text-black' />
+          <p>Fir/Spruce</p>
+        </div>
+        <div>
+          <Subtitle text='Description' color='text-black' />
+          <ul class='space-y-2'>
+            <li class='list-disc'>Rough sawn - Untreated - Raw</li>
+            <li class='list-disc'>For various areas of application</li>
+            <li class='list-disc'>We only offer to bulk buyers</li>
+            <li class='list-disc'>Price per m3 = request in writing</li>
+            <li class='list-disc'>
+              We also offer solid structural wood according to DIN 1052-1
+            </li>
+            <li class='list-disc'>Versatile for use indoors and outdoors</li>
+            <li class='list-disc'>
+              e.g. B. for roofs and interior construction, patio roofing,
+              carports, various. Constructions etc
+            </li>
+            <li class='list-disc'>Please ask for quantity price!</li>
+          </ul>
+          <Button
+            id='contact-button'
+            buttonType='primary'
+            text='Order'
+            icon='fe:mail'
+          />
+        </div>
+      </div>
+    </div>
+    <ContactModal id='contact-modal' selected='constructionWood' />
+  </Section>
+</Layout>
+
+<script>
+  const contactButton = document.getElementById('contact-button');
+  const modal = document.getElementById('contact-modal');
+
+  contactButton?.addEventListener('click', () => {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  });
+</script>

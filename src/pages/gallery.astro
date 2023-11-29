@@ -1,13 +1,17 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Section from '../components/Section.astro';
-import { Image } from 'astro:assets';
-const images = await Astro.glob('/src/images/gallery/*').then((files) => {
-  return files.map((file) => {
-    const url = file.default.src;
-    const splitUrl = url.split('/');
-    return splitUrl[splitUrl.length - 1];
-  });
+import { changeLanguage } from "i18next";
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import { Image } from "@astrojs/image/components";
+
+changeLanguage("en");
+
+const images = await Astro.glob("/src/images/gallery/*").then((files) => {
+    return files.map((file) => {
+        const url = file.default.src;
+        const splitUrl = url.split("/");
+        return splitUrl[splitUrl.length - 1];
+    });
 });
 ---
 
