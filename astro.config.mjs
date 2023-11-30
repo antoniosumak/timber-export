@@ -6,7 +6,7 @@ import vue from '@astrojs/vue';
 import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel/static';
 
 import image from '@astrojs/image';
 
