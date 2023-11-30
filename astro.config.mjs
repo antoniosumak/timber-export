@@ -6,7 +6,7 @@ import vue from '@astrojs/vue';
 import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
-import vercel from '@astrojs/vercel/serverless';
+import vercelEdge from '@astrojs/vercel/edge';
 
 import image from '@astrojs/image';
 
@@ -16,5 +16,5 @@ import astroI18next from 'astro-i18next';
 export default defineConfig({
   integrations: [vue(), tailwind(), image(), astroI18next()],
   output: 'server',
-  adapter: vercel(),
+  adapter: vercelEdge(),
 });
