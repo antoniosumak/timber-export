@@ -15,6 +15,6 @@ import astroI18next from 'astro-i18next';
 // https://astro.build/config
 export default defineConfig({
   integrations: [vue(), tailwind(), image(), astroI18next()],
-  output: 'hybrid',
+  output: 'server',
   adapter: vercel(),
 });
